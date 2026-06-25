@@ -1,0 +1,239 @@
+{
+  "name": "corenote",
+  "displayName": "CoreNote",
+  "description": "CoreNote — end-to-end encrypted, cross-device notes backed by GitHub Gists, with a recovery key.",
+  "version": "1.0.3",
+  "publisher": "abdullahkaragoz",
+  "license": "MIT",
+  "icon": "icon.png",
+  "galleryBanner": {
+    "color": "#1b1b1b",
+    "theme": "dark"
+  },
+  "sponsor": {
+    "url": "https://buymeacoffee.com/abdullahkaragoz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/abdullahkaragoz/corenote.git"
+  },
+  "bugs": {
+    "url": "https://github.com/abdullahkaragoz/corenote/issues"
+  },
+  "homepage": "https://github.com/abdullahkaragoz/corenote#readme",
+  "keywords": [
+    "notes",
+    "encryption",
+    "end-to-end encryption",
+    "github gist",
+    "sync",
+    "markdown"
+  ],
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Notebooks",
+    "Other"
+  ],
+  "main": "./dist/extension.js",
+  "activationEvents": [],
+  "contributes": {
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "gistNotes",
+          "title": "CoreNote",
+          "icon": "media/notes.svg"
+        }
+      ]
+    },
+    "views": {
+      "gistNotes": [
+        {
+          "id": "gistNotes.tree",
+          "name": "Notes",
+          "icon": "media/notes.svg"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "gistNotes.tree",
+        "contents": "Your notes are end-to-end encrypted. To begin, sign in with your GitHub account; on first sign-in you set a master password and receive a recovery key.\n[Sign in with GitHub](command:gistNotes.signIn)\n\nThen you can create your first note.\n[Create a note](command:gistNotes.createNote)"
+      }
+    ],
+    "commands": [
+      {
+        "command": "gistNotes.signIn",
+        "title": "CoreNote: Sign in with GitHub"
+      },
+      {
+        "command": "gistNotes.createNote",
+        "title": "New Note",
+        "icon": "$(new-file)"
+      },
+      {
+        "command": "gistNotes.newFolder",
+        "title": "New Folder",
+        "icon": "$(new-folder)"
+      },
+      {
+        "command": "gistNotes.refresh",
+        "title": "Refresh",
+        "icon": "$(refresh)"
+      },
+      {
+        "command": "gistNotes.deleteNote",
+        "title": "Delete Note",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "gistNotes.deleteFile",
+        "title": "Delete File",
+        "icon": "$(trash)"
+      },
+      {
+        "command": "gistNotes.renameNote",
+        "title": "Rename",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "gistNotes.renameFolder",
+        "title": "Rename / Move Folder",
+        "icon": "$(edit)"
+      },
+      {
+        "command": "gistNotes.newNoteInFolder",
+        "title": "New Note in This Folder",
+        "icon": "$(add)"
+      },
+      {
+        "command": "gistNotes.addFile",
+        "title": "Add File to Note",
+        "icon": "$(new-file)"
+      },
+      {
+        "command": "gistNotes.openInBrowser",
+        "title": "Open in Browser",
+        "icon": "$(globe)"
+      },
+      {
+        "command": "gistNotes.setPassword",
+        "title": "CoreNote: Change Master Password",
+        "icon": "$(key)"
+      },
+      {
+        "command": "gistNotes.regenerateRecoveryKey",
+        "title": "CoreNote: Generate New Recovery Key"
+      },
+      {
+        "command": "gistNotes.forgetPassword",
+        "title": "CoreNote: Forget Master Password on This Device"
+      }
+    ],
+    "menus": {
+      "view/title": [
+        {
+          "command": "gistNotes.createNote",
+          "when": "view == gistNotes.tree",
+          "group": "navigation@1"
+        },
+        {
+          "command": "gistNotes.newFolder",
+          "when": "view == gistNotes.tree",
+          "group": "navigation@2"
+        },
+        {
+          "command": "gistNotes.refresh",
+          "when": "view == gistNotes.tree",
+          "group": "navigation@3"
+        },
+        {
+          "command": "gistNotes.setPassword",
+          "when": "view == gistNotes.tree",
+          "group": "navigation@4"
+        },
+        {
+          "command": "gistNotes.createNote",
+          "when": "view == gistNotes.tree",
+          "group": "1_new@1"
+        },
+        {
+          "command": "gistNotes.newFolder",
+          "when": "view == gistNotes.tree",
+          "group": "1_new@2"
+        }
+      ],
+      "view/item/context": [
+        {
+          "command": "gistNotes.newNoteInFolder",
+          "when": "view == gistNotes.tree && viewItem == folder",
+          "group": "inline@1"
+        },
+        {
+          "command": "gistNotes.renameFolder",
+          "when": "view == gistNotes.tree && viewItem == folder",
+          "group": "inline@2"
+        },
+        {
+          "command": "gistNotes.newNoteInFolder",
+          "when": "view == gistNotes.tree && viewItem == folder",
+          "group": "1_new@1"
+        },
+        {
+          "command": "gistNotes.newFolder",
+          "when": "view == gistNotes.tree && viewItem == folder",
+          "group": "1_new@2"
+        },
+        {
+          "command": "gistNotes.renameFolder",
+          "when": "view == gistNotes.tree && viewItem == folder",
+          "group": "2_modify@1"
+        },
+        {
+          "command": "gistNotes.addFile",
+          "when": "view == gistNotes.tree && viewItem == gist",
+          "group": "inline@1"
+        },
+        {
+          "command": "gistNotes.renameNote",
+          "when": "view == gistNotes.tree && viewItem == gist",
+          "group": "1_modify@1"
+        },
+        {
+          "command": "gistNotes.openInBrowser",
+          "when": "view == gistNotes.tree && viewItem == gist",
+          "group": "1_modify@2"
+        },
+        {
+          "command": "gistNotes.deleteNote",
+          "when": "view == gistNotes.tree && viewItem == gist",
+          "group": "9_danger@1"
+        },
+        {
+          "command": "gistNotes.deleteFile",
+          "when": "view == gistNotes.tree && viewItem == file",
+          "group": "inline@1"
+        },
+        {
+          "command": "gistNotes.deleteFile",
+          "when": "view == gistNotes.tree && viewItem == file",
+          "group": "9_danger@1"
+        }
+      ]
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run build",
+    "build": "esbuild src/extension.ts --bundle --outfile=dist/extension.js --external:vscode --format=cjs --platform=node",
+    "watch": "npm run build -- --sourcemap --watch",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/vscode": "^1.90.0",
+    "esbuild": "^0.21.0",
+    "typescript": "^5.4.0"
+  }
+}
